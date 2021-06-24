@@ -1,0 +1,66 @@
+{% import 'macros/flash.html' as flash with context %}
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description"
+          content="{% block meta_description %}{% endblock %}">
+    <meta name="csrf-token" content="{{ csrf_token() }}">
+
+    <title>{% block title %}{% endblock %}</title>
+
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename='styles/vendor/bootstrap.min.css') }}">
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename='styles/main.css') }}">
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename='styles/vendor/font-awesome.min.css') }}">
+    <script src="https://code.jquery.com/jquery-1.12.2.min.js"
+            integrity="sha256-lZFHibXzMHo3GGeehn1hudTAP3Sc0uKXBXAzHX1sjtk="
+            crossorigin="anonymous"></script>
+
+
+    <!-- Datatable -->
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.20/css/jquery.dataTables.min.css">
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/responsive/2.2.3/css/responsive.dataTables.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.11.2/moment.min.js"></script>
+    <script type = "text/javascript"  src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js"></script>
+    <script type = "text/javascript"  src="https://cdn.datatables.net/responsive/2.2.3/js/dataTables.responsive.min.js"></script>
+    <script type = "text/javascript"  src="https://cdn.datatables.net/plug-ins/1.10.15/dataRender/datetime.js"></script>
+
+  </head>
+  <body>
+    {% block header %}{% endblock %}
+    
+    <main class="container">
+      {{ flash.render() }}
+
+      <div class="md-margin-top">{% block heading %}{% endblock %}</div>
+      {% block body %}{% endblock %}
+    </main>
+
+    <footer class="footer text-center">
+      <div class="container">
+        <ul class="list-inline">
+          <li class="text-muted">Snake Eyes &copy; 2016</li>
+          {% block footer %}{% endblock %}
+        </ul>
+      </div>
+    </footer>
+
+    <script
+      src="{{ url_for('static', filename='scripts/vendor/bootstrap.min.js') }}">
+    </script>
+  </body>
+  
+      
+  <script type = 'text/javascript'>
+    $('#proxies').DataTable();
+  </script>
+</html>
